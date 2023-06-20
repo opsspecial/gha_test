@@ -1,4 +1,4 @@
-name: "Simple Workflow"
+name: "Azure Infra"
 on:
   push:
     branches:
@@ -19,7 +19,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Create Public Key file
         run: |
-          echo ${{ secrets.AZURE_CREDENTIALS }} >> /tmp/id_az.pub
+          echo ${{ secrets.AZ_PUB_KEY }} > /tmp/id_az.pub
+
       - name: Initialize Terraform
         run: |
           terraform -chdir=azure_infra init 
