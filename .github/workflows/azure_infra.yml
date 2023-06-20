@@ -1,0 +1,33 @@
+name: "Simple Workflow"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code 
+        uses: actions/checkout@v3  
+      - name: setup Terraform  
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
+      - name: Setup Azure CLI
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Create Public Key file
+        run: |
+          echo ${{ secrets.AZURE_CREDENTIALS }} >> /tmp/id_az.pub
+      - name: Initialize Terraform
+        run: |
+          terraform -chdir=azure_infra init 
+      - name: Terraform plan
+        run: |
+          terraform -chdir=azure_infra plan
+      - name: Terraform apply
+        run: |
+          terraform -chdir=azure_infra apply    
+
+
