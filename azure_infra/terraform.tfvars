@@ -1,6 +1,6 @@
 # Rename this file to terraform.tfvars afte substituting the values
 
-prefix   = "tfdemo"
+prefix   = "finxcel"
 location = "eastus"
 
 #agent Variables
