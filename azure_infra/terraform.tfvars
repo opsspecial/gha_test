@@ -1,12 +1,12 @@
 # Rename this file to terraform.tfvars afte substituting the values
 
-prefix = "tfdemo"
+prefix   = "tfdemo"
 location = "eastus"
 
 #agent Variables
 
 agent_inbound_ports = ["22", "80", "8080"]
-agent_vm_size       =  "Standard_B2S"
+agent_vm_size       = "Standard_B2S"
 
 #Web Variables
 web_inbound_ports = ["80"]
@@ -25,15 +25,15 @@ app_vm_size       = "Standard_B1s"
 app_node_count    = 2
 
 #common VM variables
-username  = "azadmin"
+username   = "azadmin"
 pubkeypath = "/tmp/id_az.pub"
 
 destination_ssh_key_path = "/home/azadmin/.ssh/authorized_keys"
-application_port = 80
-frontend_port = 80
+application_port         = 80
+frontend_port            = 80
 
 tags = {
-    Project = "tfdemo" 
-    DeployMode="Terraform"
-    Environment = "dev"
+  Project     = "tfdemo"
+  DeployMode  = "Terraform"
+  Environment = "dev"
 }

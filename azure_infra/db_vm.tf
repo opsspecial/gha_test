@@ -14,7 +14,7 @@ resource "azurerm_virtual_machine" "db" {
   network_interface_ids = [element(azurerm_network_interface.db.*.id, count.index)]
   vm_size               = var.db_vm_size
   depends_on            = [azurerm_virtual_machine.agent]
-    
+
   # This means the OS Disk will be deleted when Terraform destroys the Virtual Machine
   # NOTE: This may not be optimal in all cases.
   delete_os_disk_on_termination = true
@@ -53,7 +53,7 @@ resource "azurerm_virtual_machine" "db" {
   }
   tags = {
     Environment = var.Environment
-    AppTier = "DB"  
+    AppTier     = "DB"
   }
 
 }

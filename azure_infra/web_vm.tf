@@ -51,7 +51,7 @@ resource "azurerm_virtual_machine" "web" {
   }
   tags = {
     Environment = var.Environment
-    AppTier = "Web"
+    AppTier     = "Web"
   }
 
 }

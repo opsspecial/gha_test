@@ -17,7 +17,7 @@ variable "agent_vm_size" {
 
 
 variable "application_port" {
-  description  =  "Port on which App is exposed to LB"
+  description = "Port on which App is exposed to LB"
 
 }
 variable "frontend_port" {
@@ -30,7 +30,7 @@ variable "web_node_count" {
 
 variable "web_vm_size" {
   description = "Size of the web Machine"
-  default = "Standard_B1s"
+  default     = "Standard_B1s"
 }
 
 
@@ -39,7 +39,7 @@ variable "app_node_count" {
 
 variable "app_vm_size" {
   description = "Size of the web Machine"
-  default = "Standard_B1s"
+  default     = "Standard_B1s"
 }
 
 variable "db_node_count" {
@@ -67,7 +67,7 @@ variable "app_inbound_ports" {
 }
 
 variable "pubkeypath" {
- 
+
   description = "Path for the SSH Public key"
 
 }
@@ -79,8 +79,8 @@ variable "tags" {
   type = map(string)
 
   default = {
-    name = "cloudopsPipeline"
-    DeployMode="Terraform"
+    name        = "cloudopsPipeline"
+    DeployMode  = "Terraform"
     Environment = "Development"
   }
 

@@ -7,7 +7,7 @@ data "template_file" "agent" {
 data "template_file" "key_data" {
   template = file(var.pubkeypath)
 }
- 
+
 resource "azurerm_virtual_machine" "agent" {
   name                  = "${var.prefix}-agent"
   location              = azurerm_resource_group.myapp.location
@@ -41,7 +41,7 @@ resource "azurerm_virtual_machine" "agent" {
     computer_name  = "${var.prefix}-agent"
     admin_username = var.username
     custom_data    = data.template_file.agent.rendered
-    
+
   }
 
   os_profile_linux_config {
@@ -54,7 +54,7 @@ resource "azurerm_virtual_machine" "agent" {
   }
   tags = {
     Environment = var.Environment
-    AppTier = "Admin"
+    AppTier     = "Admin"
   }
 
 }

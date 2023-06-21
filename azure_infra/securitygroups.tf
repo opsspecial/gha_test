@@ -24,7 +24,7 @@ resource "azurerm_network_security_rule" "agent" {
 
 # Associate agent NSG To agent subnet
 resource "azurerm_subnet_network_security_group_association" "agent" {
-  subnet_id = azurerm_subnet.agent.id
+  subnet_id                 = azurerm_subnet.agent.id
   network_security_group_id = azurerm_network_security_group.agent.id
   depends_on = [
     azurerm_subnet.agent,
@@ -61,14 +61,14 @@ resource "azurerm_network_security_rule" "db" {
 # DB Security Group Association
 
 resource "azurerm_subnet_network_security_group_association" "db" {
-  subnet_id = azurerm_subnet.db.id
+  subnet_id                 = azurerm_subnet.db.id
   network_security_group_id = azurerm_network_security_group.db.id
   depends_on = [
     azurerm_subnet.db,
     azurerm_network_security_group.db,
     azurerm_network_interface.db
   ]
-}  
+}
 
 
 
@@ -99,9 +99,9 @@ resource "azurerm_network_security_rule" "web" {
 # web Security Group Association
 
 resource "azurerm_subnet_network_security_group_association" "web" {
-  subnet_id = azurerm_subnet.web.id
+  subnet_id                 = azurerm_subnet.web.id
   network_security_group_id = azurerm_network_security_group.web.id
-    depends_on = [
+  depends_on = [
     azurerm_subnet.web,
     azurerm_network_security_group.web,
     azurerm_network_interface.web
@@ -136,7 +136,7 @@ resource "azurerm_network_security_rule" "app" {
 # DB Security Group Association
 
 resource "azurerm_subnet_network_security_group_association" "app" {
-  subnet_id = azurerm_subnet.app.id
+  subnet_id                 = azurerm_subnet.app.id
   network_security_group_id = azurerm_network_security_group.app.id
   depends_on = [
     azurerm_subnet.app,
