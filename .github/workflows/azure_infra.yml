@@ -33,6 +33,6 @@ jobs:
           terraform -chdir=azure_infra plan
       - name: Terraform apply
         run: |
-          terraform -chdir=azure_infra apply -auto-approve
+          terraform -chdir=azure_infra destroy -auto-approve
 
 
