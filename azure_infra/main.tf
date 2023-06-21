@@ -12,8 +12,6 @@ provider "azurerm" {
   subscription_id = var.ARM_SUBSCRIPTION_ID
 }
 
-
-
 resource "azurerm_resource_group" "myapp" {
   name     = "${var.prefix}-rg"
   location = var.location
