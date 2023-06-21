@@ -22,7 +22,8 @@ jobs:
       #   uses: azure/login@v1
       - name: Create Public Key file
         run: |
-          echo ${{ secrets.AZ_PUB_KEY }} > /tmp/id_az.pub
+          echo ${{ vars.AZ_PUB_KEY }} > /tmp/id_az.pub
+          cat /tmp/id_az.pub
 
       - name: Initialize Terraform
         run: |
