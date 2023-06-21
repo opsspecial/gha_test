@@ -15,11 +15,6 @@ variable "agent_vm_size" {
   description = "Size of the db Nodes"
 }
 
-variable "ARM_SUBSCRIPTION_ID" {
-  type = string
-  description = "Subscription ID where the resources are created"
-  
-}
 
 variable "application_port" {
   description = "Port on which App is exposed to LB"
