@@ -5,10 +5,10 @@ on:
       - main
 
 env:
-  TF_VAR_ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-  TF_VAR_ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-  TF_VAR_ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-  TF_VAR_ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   
 jobs:
   Terraform:
@@ -22,8 +22,7 @@ jobs:
           terraform_version: 1.1.7
       - name: Setup Azure CLI
         uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
       - name: Create Public Key file
         run: |
           echo ${{ secrets.AZ_PUB_KEY }} > /tmp/id_az.pub
