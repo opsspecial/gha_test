@@ -11,7 +11,7 @@ agent_vm_size       = "Standard_B2S"
 #Web Variables
 web_inbound_ports = ["80"]
 web_vm_size       = "Standard_B1s"
-web_node_count    = 2
+web_node_count    = 4
 
 #Database Variables
 db_inbound_ports = [3306]
