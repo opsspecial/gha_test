@@ -11,18 +11,18 @@ agent_vm_size       = "Standard_B2S"
 #Web Variables
 web_inbound_ports = ["80"]
 web_vm_size       = "Standard_B1s"
-web_node_count    = 4
+web_node_count    = 2
 
 #Database Variables
 db_inbound_ports = [3306]
 db_vm_size       = "Standard_B1s"
-db_node_count    = 2
+db_node_count    = 0
 
 
 # Web Variables
 app_inbound_ports = ["8080"]
 app_vm_size       = "Standard_B1s"
-app_node_count    = 2
+app_node_count    = 0
 
 #common VM variables
 username   = "azadmin"
