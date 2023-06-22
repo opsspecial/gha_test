@@ -5,7 +5,6 @@ on:
       Action: 
         description: Whehter to create or delete
         required: true
-        default: Apply
         type: choice
         options:
           - Apply
@@ -21,7 +20,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      Action: Applys
+      Action: Apply
     steps:
       - name: Checkout the code 
         uses: actions/checkout@v3  
