@@ -9,7 +9,7 @@ agent_inbound_ports = ["22", "80", "8080"]
 agent_vm_size       = "Standard_B2S"
 
 #Web Variables
-web_inbound_ports = ["80"]
+web_inbound_ports = ["8080"]
 web_vm_size       = "Standard_B1s"
 web_node_count    = 2
 
@@ -29,7 +29,7 @@ username   = "azadmin"
 pubkeypath = "/tmp/id_az.pub"
 
 destination_ssh_key_path = "/home/azadmin/.ssh/authorized_keys"
-application_port         = 80
+application_port         = 8080
 frontend_port            = 80
 
 tags = {
