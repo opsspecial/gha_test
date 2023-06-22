@@ -1,6 +1,15 @@
 name: "Azure Infra"
 on:
   workflow_dispatch:
+    inputs:
+      Action: 
+        description: Whehter to create or delete
+        required: true
+        default: Apply
+        type: choice
+        options:
+          - Apply
+          - Destroy
   push:
     branches:
       - main
@@ -32,7 +41,13 @@ jobs:
         run: |
           terraform -chdir=azure_infra plan
       - name: Terraform apply
+        if: ${{ inputs.Action}} == 'Apply'
         run: |
           terraform -chdir=azure_infra apply -auto-approve
+      - name: Terraform apply
+        if: ${{ inputs.Action}} == 'Destroy'
+        run: |
+          terraform -chdir=azure_infra destroy -auto-approve
+
 
 
