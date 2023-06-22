@@ -1,5 +1,6 @@
 name: "Azure Infra"
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -21,13 +22,12 @@ jobs:
       # - name: Setup Azure CLI
       #   uses: azure/login@v1
       - name: Create Public Key file
-        run: |
+        run: | 
           echo ${{ vars.AZ_PUB_KEY }} > /tmp/id_az.pub
           cat /tmp/id_az.pub
-
       - name: Initialize Terraform
         run: |
-          terraform -chdir=azure_infra init -var SUBSCRIPTION_ID=${{ secrets.ARM_SUBSCRIPTION_ID }}
+          terraform -chdir=azure_infra init
       - name: Terraform plan
         run: |
           terraform -chdir=azure_infra plan
