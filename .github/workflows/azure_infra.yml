@@ -20,7 +20,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      Action: Apply
+      Action: Destroy
     steps:
       - name: Checkout the code 
         uses: actions/checkout@v3  
