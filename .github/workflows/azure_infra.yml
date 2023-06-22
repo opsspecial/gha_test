@@ -43,11 +43,13 @@ jobs:
       - name: Terraform apply
         if: ${{ inputs.Action}} == 'Apply'
         run: |
-          terraform -chdir=azure_infra apply -auto-approve
-      - name: Terraform apply
+          echo "Apply will run"
+          # terraform -chdir=azure_infra apply -auto-approve
+      - name: Terraform Destroy
         if: ${{ inputs.Action}} == 'Destroy'
         run: |
-          terraform -chdir=azure_infra destroy -auto-approve
+          echo "Destroy will run"
+          # terraform -chdir=azure_infra destroy -auto-approve
 
 
 
