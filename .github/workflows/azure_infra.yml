@@ -21,6 +21,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      Action: Applys
     steps:
       - name: Checkout the code 
         uses: actions/checkout@v3  
@@ -41,12 +42,12 @@ jobs:
         run: |
           terraform -chdir=azure_infra plan
       - name: Terraform apply
-        if: ${{ inputs.Action}} == 'Apply'
+        if: ${{ github.event.inputs.Action == 'Apply' || env.Action == 'Apply' }}
         run: |
           echo "Apply will run"
           # terraform -chdir=azure_infra apply -auto-approve
       - name: Terraform Destroy
-        if: ${{ inputs.Action}} == 'Destroy'
+        if: ${{ github.event.inputs.Action == 'Destroy' || env.Action == 'Destroy' }}
         run: |
           echo "Destroy will run"
           # terraform -chdir=azure_infra destroy -auto-approve
