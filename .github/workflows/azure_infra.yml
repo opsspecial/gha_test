@@ -54,7 +54,7 @@ jobs:
           echo "Terraform is applying the config"
           terraform -chdir=azure_infra apply -auto-approve
       - name: Terraform Destroy
-        if: ${{ env.Action == 'Apply' }}
+        if: ${{ env.Action == 'Destroy' }}
         run: |
           echo "Terraform is destroying the config"
           terraform -chdir=azure_infra destroy -auto-approve
