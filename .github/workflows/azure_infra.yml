@@ -20,7 +20,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      Action: Apply
+      Action: Destroy
     steps:
       - name: Checkout the code 
         uses: actions/checkout@v3  
@@ -28,8 +28,16 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.1.7
-      # - name: Setup Azure CLI
-      #   uses: azure/login@v1
+      - name: set action variable
+        run: |
+          echo "Set up Action Enviroment Variable based on trigger (push /manual)"
+          if [[ ${{ github.event_name }} == "workflow_dispatch"  ]]
+          then
+            echo "Action=${{ github.event.inputs.Action }}" >> $GITHUB_ENV
+          elif [[ ${{ github.event_name }} == "push" ]]
+          then
+            echo "Action=${{ env.Action }}" >> $GITHUB_ENV
+          fi 
       - name: Create Public Key file
         run: | 
           echo ${{ vars.AZ_PUB_KEY }} > /tmp/id_az.pub
@@ -41,12 +49,12 @@ jobs:
         run: |
           terraform -chdir=azure_infra plan
       - name: Terraform apply
-        if: ${{ github.event.inputs.Action == 'Apply' || env.Action == 'Apply' }}
+        if: ${{ env.Action == 'Apply' }}
         run: |
           echo "Terraform is applying the config"
           terraform -chdir=azure_infra apply -auto-approve
       - name: Terraform Destroy
-        if: ${{ github.event.inputs.Action == 'Destroy' || env.Action == 'Destroy' }}
+        if: ${{ env.Action == 'Apply' }}
         run: |
           echo "Terraform is destroying the config"
           terraform -chdir=azure_infra destroy -auto-approve
