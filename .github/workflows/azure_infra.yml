@@ -2,7 +2,7 @@ name: "Azure Infra"
 on:
   workflow_dispatch:
     inputs:
-      Action: 
+      TF_Action: 
         description: Whehter to create or delete
         required: true
         type: choice
@@ -20,7 +20,7 @@ jobs:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-      Action: Destroy
+      TF_Action: Destroy
     steps:
       - name: Checkout the code 
         uses: actions/checkout@v3  
@@ -33,10 +33,10 @@ jobs:
           echo "Set up Action Enviroment Variable based on trigger (push /manual)"
           if [[ ${{ github.event_name }} == "workflow_dispatch"  ]]
           then
-            echo "Action=${{ github.event.inputs.Action }}" >> $GITHUB_ENV
+            echo "Action=${{ github.event.inputs.TF_Action }}" >> $GITHUB_ENV
           elif [[ ${{ github.event_name }} == "push" ]]
           then
-            echo "Action=${{ env.Action }}" >> $GITHUB_ENV
+            echo "Action=${{ env.TF_Action }}" >> $GITHUB_ENV
           fi 
       - name: Create Public Key file
         run: | 
